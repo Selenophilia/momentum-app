@@ -1,0 +1,95 @@
+ <% if flash[:alert]%>
+        <div class="alert alert-warning" role="alert">
+                <%=  flash[:alert] = "Invalid Action!"%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<%end%>
+ 
+ 
+  <div class="container-fluid p-0"> 
+        <div class="row" id="body-row">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group">
+                    <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small>MAIN MENU</small>
+                    </li>
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="icon">
+                            <i class="fas fa-list-alt mr-3"></i>
+                            </span> 
+                            <span class="menu-collapsed">Dashboard</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                      </a>
+                          <div id='submenu1' class="collapse sidebar-submenu">
+                              <a data-toggle="list" href="#home" class="list-group-item list-group-item-action bg-dark text-white">
+                                  <span class="menu-collapsed"> <i class="fas fa-users mr-3"></i>Users Section</span>
+                              </a>
+                              <%# <a data-toggle="list" href="#profile" class="list-group-item list-group-item-action bg-dark text-white">
+                                  <span class="menu-collapsed"> <i class="fas fa-code mr-3"> </i>Basic Programming</span>
+                              </a> %>
+                         </div>
+                  
+  
+                    <a class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="icon">
+                              <i class="fas fa-power-off"></i>
+                            </span> 
+                                <%= button_to  "Log Out", logout_user_path,class: "btn btn-link menu-collapsed" ,method: :delete%>
+                        </div>
+                    </a>
+
+  
+
+                  
+                        
+                </ul>
+            </div><!-- sidebar-container end -->
+          <!--  side bar content start --> 
+            <div class="col">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="jumbotron">
+                      <h1 class="display-2">Users Section</h1>
+                       <% if logged_in? %>
+                           <p class="display-4"> You are logged in as, <%= current_user.username%></p>
+                        <%end%>
+                      <p>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut. </p>                      
+                          <% if is_admin? %>
+                             <%= button_to  "Add New User",new_user_path, :class => "btn btn-primary btn-md",method: :get%>   
+                          <% end %>
+                    </div>
+
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">user_id</th>
+                            <th scope="col">UserName</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% @users.each do |user| %>
+                          <tr>
+                            <th scope="row"><%= user.id%></th>
+                            <td><%=  user.username %></li></td>
+                            <td><%= link_to "Show Details", edit_user_path(user)%></td>
+                            <td>
+                              <% if is_admin? %>
+                                    <span class="del-btn">
+                                        <%= link_to "x", delete_user_path(user), :class => "del-btn" ,method: :delete%> 
+                                    </span>
+                              <%end%>
+                            </td>
+                          </tr>
+                          <%end%>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad sint dolorem error quasi nam reprehenderit ut delectus eum dolores! Dignissimos?</div>
+                </div>          
+        </div><!-- content end -->

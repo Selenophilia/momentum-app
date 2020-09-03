@@ -1,0 +1,83 @@
+<%= stylesheet_link_tag "authors", media: "all", "data-turbolinks-track" => "reload" %>
+ 
+  <div class="container-fluid p-0"> 
+        <div class="row" id="body-row">
+            <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                <ul class="list-group">
+                    <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                        <small>MAIN MENU</small>
+                    </li>
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="icon">
+                            <i class="fas fa-list-alt mr-3"></i>
+                            </span> 
+                            <span class="menu-collapsed">Dashboard</span>
+                            <span class="submenu-icon ml-auto"></span>
+                        </div>
+                    </a>
+                      <div id='submenu1' class="collapse sidebar-submenu">
+                        <a data-toggle="list" href="#home" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="menu-collapsed"> <i class="fas fa-users mr-3"></i>Authors Section</span>
+                        </a>
+                        <a data-toggle="list" href="#profile" class="list-group-item list-group-item-action bg-dark text-white">
+                            <span class="menu-collapsed"> <i class="fas fa-code mr-3"> </i>Basic Programming</span>
+                        </a>
+                    </div>
+                    <a class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="icon">
+                              <i class="fas fa-power-off"></i>
+                            </span> 
+                                <%= button_to  "Log Out", logout_user_path,class: "btn btn-link menu-collapsed" ,method: :delete%>
+                        </div>
+                    </a>
+                </ul>
+            </div><!-- sidebar-container end -->
+
+            <!--  side bar content start --> 
+            <div class="col">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                    <div class="jumbotron">
+                      <h1 class="display-4">Authors Section</h1>
+                      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      <p>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut. </p>                      
+                          <% if is_admin? %>
+                            <%= button_to  "Add Author",new_author_path, :class => "btn btn-primary btn-md",method: :get%>   
+                          <% end %>
+                    </div>
+
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">author_id</th>
+                            <th scope="col">Author Name</th>
+                            <th scope="col">Quotes</th>
+                             <% if is_admin? %>
+                                 <th scope="col">Action</th>
+                            <%end%>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @author.each do |author| %>
+                          <tr>
+                            <th scope="row"><%= author.id%></th>
+                            <td><%=  author.author_name %></td>
+                            <td><%= link_to "Show Quotes", authors_quotes_path(author), method: :get%></td>
+                                <% if is_admin? %>
+                            <td><%= link_to "Show Details",show_author_url(author)%></td>
+                            <td>
+                                  <span class="del-btn">
+                                      <%= link_to "x", delete_author_path(author), :class => "del-btn" ,method: :delete%> 
+                                  </span>
+                            </td>
+                               <% end %> 
+                          </tr>
+                          <%end%>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad sint dolorem error quasi nam reprehenderit ut delectus eum dolores! Dignissimos?</div>
+                </div>          
+        </div><!-- content end -->

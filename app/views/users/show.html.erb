@@ -1,0 +1,19 @@
+<h1>Show User Page</h1>
+
+
+<%= button_to "Edit User", edit_user_path(@users), method: :get%>
+
+<h2>Name <%= @users.username %></h2>
+<h2>email <%= @users.email %></h2>
+<h2>password <%= @users.password %></h2>
+
+
+<%= button_to "Delete user", delete_user_path(@users), method: :delete%>
+
+
+ <%= button_to  "Sign Up", new_user_path, method: :get%>   
+
+ <%= button_to  "Log In", '/login', method: :get%>   
+
+ <%= button_to  "Log Out",logout_user_path, method: :delete%>   
+

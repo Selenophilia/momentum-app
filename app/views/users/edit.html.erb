@@ -1,0 +1,62 @@
+<% if flash[:errors]%>
+    <% flash[:errors].each do |error| %>
+        <div class="alert alert-danger" role="alert">
+                <%= error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% end %>
+<%end%>
+ 
+<div class="container mt-5 mr-5">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <%= form_tag update_user_path(@user), method: :patch do  %>
+                         <h3 class="text-center font-bold py-4"><strong>Edit User</strong></h3>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+                                    </div>  
+                                    <%= text_field_tag  :username,  @user.username,class: "form-control" %>                  
+                            </div>
+
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-envelope"></i></span>
+                                    </div>  
+                                    <%= text_field_tag  :email,  @user.email ,class: "form-control" %>                  
+                            </div>
+                            <div class="text-center py-4">
+                                <%= submit_tag "Update user", class: "btn btn-primary" %>
+                            </div>
+                 <%end%>                       
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<%# <h1> Edit Article</h1> %>
+
+
+<%# <% if flash[:errors]%>
+    <%# <% flash[:errors].each do |error| %>
+            <%# <p style="color: red"><%= error%>
+    <%# <% end %>
+<%# <%end%>
+
+   <%# <%= form_tag update_user_path(@user), method: :patch do  %>
+  
+        <%# <%= label_tag :email%>
+<%#         
+        <%= text_field_tag :email, @user.email %>
+<%#         
+        <%= label_tag :username%>
+<%#         
+        <%= text_field_tag :username, @user.username%>
+
+   <%# <%= submit_tag "Update"%>
+<%# <%end%>

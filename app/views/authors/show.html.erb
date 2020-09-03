@@ -1,0 +1,42 @@
+<% if flash[:errors]%>
+    <% flash[:errors].each do |error| %>
+        <div class="alert alert-danger" role="alert">
+                <%= error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% end %>
+<%end%>
+ 
+<div class="container mt-5 mr-5">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <%= form_tag update_author_path(@author), method: :patch do  %>
+                         <h3 class="text-center font-bold py-4"><strong>Edit Author</strong></h3>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+                                    </div>  
+                                    <%= text_field_tag  :author_name,  @author.author_name,class: "form-control" %>                  
+                            </div>
+                            <div class="text-center py-4">
+                                <%= submit_tag "Update Author", class: "btn btn-primary" %>
+                            </div>
+                 <%end%>                       
+            </div>
+        </div>
+    </div>
+</div>
+
+        <%# <%= label_tag :authorname%> 
+    
+        <%# <%= text_field_tag :author_name, @author.author_name %>
+         
+        <%# <%= submit_tag "Update"%>
+
+        <%# <%= button_to "Show Quotes", authors_quotes_path(@author), method: :get%> 
+
+        <%# <%= button_to "Delete Author", delete_author_path(@author), method: :delete%>
+          

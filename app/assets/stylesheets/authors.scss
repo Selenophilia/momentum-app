@@ -1,0 +1,80 @@
+// Place all the styles related to the authors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#body-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#sidebar-container {
+    min-height: 100vh;
+    background-color: #132644;
+    padding: 0;
+    /* flex: unset; */
+}
+
+.sidebar-expanded {
+    width: 230px;
+}
+
+// .sidebar-collapsed {
+//     /*width: 60px;*/
+//     width: 100px;
+// }
+
+#sidebar-container .list-group a {
+    height: 50px;
+    color: white;
+}
+
+#sidebar-container .list-group li.list-group-item {
+    background-color: #132644;
+}
+
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 30px;
+}
+
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+.sidebar-separator-title {
+    background-color: #132644;
+    height: 35px;
+}
+
+.sidebar-separator {
+    background-color: #132644;
+    height: 25px;
+}
+
+.logo-separator {
+    background-color: #132644;
+    height: 60px;
+}
+
+a.bg-dark {
+    background-color: #132644 !important;
+}
+
+.btn{
+    color: #fff;
+    font-size: 20px;
+}
+
+#home{
+    padding: 20px;
+}
+
+.del-btn{
+    color:  red;
+    text-decoration: none;
+
+}
+
+.list-group-item.active {
+    border: none;
+}

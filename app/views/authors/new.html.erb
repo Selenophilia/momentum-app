@@ -1,0 +1,38 @@
+<% if flash[:errors]%>
+    <% flash[:errors].each do |error| %>
+        <div class="alert alert-danger" role="alert">
+                <%= error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% end %>
+<%end%>
+
+<div class="container mt-5 mr-5">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                 <%= form_for @author do|f|%>
+                         <h3 class="text-center font-bold py-4"><strong>Add New Author</strong></h3>
+                                <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+                                        </div>
+                                            <%= f.text_field  :author_name, placeholder: "Enter Author Name",class: "form-control" %>                  
+                                </div>
+                                <div class="text-center py-4">
+                                    <%= f.submit "Create Author", class: "btn btn-primary" %>
+                                </div>
+                 <%end%>                       
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%# <%= form_for @author do|f|%>
+    <%# <%= f.label :AuthorName %>
+    <%# <%= f.text_field  :author_name %> 
+
+    <%# <%= f.submit %> 

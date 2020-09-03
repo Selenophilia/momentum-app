@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag "quotes", media: "all", "data-turbolinks-track" => "reload" %>
+ 
+<% if flash[:errors]%>
+        <div class="alert alert-warning" role="alert">
+                <%= flash[:errors] = "You are not Authorized to that!"%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<%end%>
+
+
+
+
+ <div class="jumbotron">
+    <h1 class="display-4">Quotes Section</h1>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut. </p>                      
+        <% if is_admin? %> 
+            <%= button_to  "Add New Quotes",new_author_quotes_path,  :class => "btn btn-primary btn-md",method: :get%>   
+        <%end%>
+</div>
+
+<div class="row">
+  <% @quotes.each do |quote| %>
+  <div class="col-sm-4">
+    <div class="card w-70  ml-5 mr-5 mb-5 mt-2 bg-light border-dark ">
+            <div class="card-body">
+                <blockquote class="blockquote">
+                    <p class="card-text "><%= link_to quote.description,
+                    edit_author_quotes_path(quote.author_id,quote.id) %></p>                
+                    <footer class="blockquote-footer">
+                        <small>
+                            <% @author.each do |author| %>
+                                 <cite title="Source Title"><%= author.author_name%></cite>
+                            <%end%>
+                        </small>
+                    </footer>
+                    <% if is_admin? %>
+                        <div class="text-right">
+                            <%= link_to "Delete", delete_author_quotes_path(quote.author_id, quote.id), :class => "btn btn-danger btn-sm mt-2" ,method: :delete%>                                                
+                        </div>
+                    <% end %>    
+                </blockquote>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+         </div>
+     </div>
+   <%end%>
+</div>
+

@@ -1,0 +1,53 @@
+<% if flash[:alert]%>
+        <div class="alert alert-danger" role="alert">
+                <%= flash[:alert] = "Invalid Credentials!"%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+<%end%>
+
+<div class="container mt-5 mr-5">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                 <%= form_tag login_user_path do %>
+                         <h3 class="text-center font-bold py-4"><strong>Login Form</strong></h3>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+                                    </div>  
+                                    <%= text_field_tag  :username,"Enter Username",class: "form-control"  %>                  
+                            </div>
+
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-lock"></i></span>
+                                    </div>  
+                                     <%= password_field_tag  :password, "", placeholder: "Enter Password",class: "form-control" %>                                            
+                            </div>
+
+                   
+                            <div class="text-center py-4">
+                                <%= submit_tag "Login", class: "btn btn-primary float-right " %>
+                               <%end%> 
+                                 <%= button_to  "Sign Up", login_user_signup_path, class: "btn btn-primary mr-4 float-right",method: :get%>   
+
+                            </div>
+                             
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%# <h1>Login Form</h1>
+   <%= form_tag login_user_path do %>
+
+   <%# <%= label_tag :username%>
+    <%# <%= text_field_tag :username %>   
+    <%# <%= label_tag :password%>
+<%#   
+    <%= password_field_tag :password%>
+    <%# <%= submit_tag "Login"%> 
+ <%# <%end%> 
