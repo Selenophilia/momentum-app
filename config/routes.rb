@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   #root route
-  root   'login#new'
+  root   'login#welcome'
 
   # user route start
   get '/users', to: 'users#index'
