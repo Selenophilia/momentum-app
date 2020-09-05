@@ -29,10 +29,10 @@ class UsersController < ApplicationController
          @users = User.find(params[:id])
         if  @users == current_user 
                 @users
-      else  
-        flash[:errors] = @users.errors.full_messages 
-          redirect_to '/users'
-      end   
+        else  
+            flash[:errors] = @users.errors.full_messages 
+            redirect_to '/users'
+        end   
     end 
 
     def edit
