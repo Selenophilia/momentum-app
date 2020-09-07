@@ -33,4 +33,9 @@ class LoginControllerTest < ActionDispatch::IntegrationTest
     login_user_test(@user)
   end
 
+  test "can see the welcome page" do
+    get "/index"
+    assert_response :success
+  end
+
 end

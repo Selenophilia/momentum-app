@@ -14,8 +14,8 @@ class QuotesController < ApplicationController
         if @quote.save
             redirect_to authors_quotes_path
         else
-            flash[:errors] = @quotes.errors.full_messages 
-            redirect_to new_quotes_author_url   
+            flash[:errors] = @quote.errors.full_messages 
+            redirect_to new_author_quotes_url   
         end 
     end 
 
