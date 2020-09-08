@@ -1,7 +1,7 @@
 class Tag < ApplicationRecord
 
-    validates :tag_id, presence: true 
+    validates :name, presence: true, 
+    length: {minimum: 4}
 
-    validates :quotation_id, presence: true
         
 end
