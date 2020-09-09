@@ -103,7 +103,7 @@ class QuotesControllerTest < ActionDispatch::IntegrationTest
     login_user_test(@admin_user) 
 
     assert_difference('Quote.count', -1) do
-      delete delete_author_quotes_url(@quotes.author_id, @quotes.id)
+      delete delete_author_quotes_url(@quotes.author_id,@quotes.id)
     end     
   end 
 

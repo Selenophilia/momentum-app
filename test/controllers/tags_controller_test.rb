@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
-    
+    setup do
+      Tag.create(name: 'sample_tag', id:1)     
+    end
   test "should go to new tag form" do
     get new_author_quotes_tag_path(author_id:1, quotes_id:1)
 

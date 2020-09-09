@@ -6,7 +6,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     @admin_user =  User.create(username: "admin_user", email: "admin_email@email.com",
                    password: "examplepassword", admin: true)
     @author     =  Author.create(author_name: "author_sample_name", id:1)
-    @get_author =  authors(:one)
+    @get_author =  Author.last
   end
 
   test "should go to author index form" do
@@ -71,7 +71,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     login_user_test(@admin_user) 
 
     assert_difference('Author.count', -1) do
-        delete delete_author_path(@get_author)
+        delete delete_author_path(@get_author.id)
     end     
   end 
 
