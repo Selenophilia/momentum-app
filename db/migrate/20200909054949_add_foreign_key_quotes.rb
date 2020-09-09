@@ -1,5 +1,5 @@
 class AddForeignKeyQuotes < ActiveRecord::Migration[6.0]
   def change
-    add_reference :quotes, :tags, foreign_key: true
+    remove_column :quotes, :tags_id, :integer
   end
 end
