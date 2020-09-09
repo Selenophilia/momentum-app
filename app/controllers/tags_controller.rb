@@ -1,47 +1,47 @@
 class TagsController < ApplicationController
     def index
-        @tags = Tags.All
+        @tags = Tag.All
     end 
 
-    def def new
-        @tag = Tags.new
+    def  new
+        @tag = Tag.new
     end
     
     def create
-        @tag = Tags.create(params.require(:tags).permit(:name))
+        @tag = Tag.create(params.require(:tags).permit(:name, :author_id, :quotes_id))
         if @tag.save
-            redirect_to tags_path
+            redirect_to authors_quotes_tag_path
         else    
-            redirect_to new_create_path
+            redirect_to create_author_quotes_tag_path
         end
 
     end
     
     def show
-        @tag = Tags.find(params[:id])
+        @tag = Tag.find(params[:id])
     end
 
     def edit
-        @tag = Tags.find(params[:id])
+        @tag = Tag.find(params[:id])
     end
 
     def update
-        @tag = Tags.find(params[:id])
+        @tag = Tag.find(params[:id])
         if @tag
-            tag.update(params.require(:tags).permit(:name))
-            redirect_to show_tags_path
+            tag.update(params.permit(:name,:author_id, :quotes_id))
+            redirect_to show_author_quotes_tag_path
         else
-            redirect_to update_tags_path
+            redirect_to update_author_quotes_tag_path
         end
     end
 
     def destroy
-        @tag = Tags.find(params[:id])
+        @tag = Tag.find(params[:id])
         if @tag
             @tag.destroy
-            redirect_to tags_path
+            redirect_to authors_quotes_tag_path
         else
-            redirect_to show_tags_path
+            redirect_to authors_quotes_tag_path
         end
     end    
 end
