@@ -9,7 +9,7 @@ class QuotesController < ApplicationController
     end
 
     def create
-        @quote = Quote.create(params.permit(:description, :author_id, :id))
+        @quote = Quote.create(params.permit(:description, :author_id, tag_ids: []))
    
         if @quote.save
             redirect_to authors_quotes_path
