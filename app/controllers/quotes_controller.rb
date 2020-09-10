@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
     def index
         @author = Author.where(id: params[:author_id])
         @quotes = Quote.where(author_id: params[:author_id])
-        @tags = QuotationTag.where(quote_id: params[:quote_id])
+        @quote_tag = Quote.includes(:tags).all
     end 
    
     def new
@@ -55,7 +55,7 @@ class QuotesController < ApplicationController
     def destroy
         @quotes = Quote.find(params[:id])
         if @quotes
-            @quotes.destroy
+            @quotes.destroy                
             redirect_to authors_quotes_url
         end 
     end

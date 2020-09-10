@@ -71,8 +71,8 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     login_user_test(@admin_user) 
 
     assert_difference('Author.count', -1) do
-        delete delete_author_path(@get_author.id)
-    end     
+        delete delete_author_path(@get_author)
+      end     
   end 
 
 end
