@@ -2,18 +2,19 @@ class QuotesController < ApplicationController
     def index
         @author = Author.where(id: params[:author_id])
         @quotes = Quote.where(author_id: params[:author_id])
+        @tags = QuotationTag.where(quote_id: params[:quote_id])
     end 
    
     def new
         @quote = Quote.new
-        @tags  = Tag.all 
     end
 
     def create
-        @tags  = Tag.all 
-        @quote = Quote.create(params.permit(:description, :author_id, tag_ids: []))
-        @quote_tag = QuotationTag.create(:quote_id, :tag_id)
-        if @quote.save
+        @tag_id = params[:tag_ids].to_i
+        @quote = Quote.create(params.permit(:description, :author_id, tag_ids: [])) 
+        @quote_tags = @quote.quotation_tags.create(tag_id: @tag_id)
+
+        if @quote.save && @quote_tags.save
             redirect_to authors_quotes_path
         else
             flash[:errors] = @quote.errors.full_messages 
