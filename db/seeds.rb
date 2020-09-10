@@ -8,15 +8,15 @@
 
 #Author.create(author_name: 'first_author')
    
-# Tag.create(name: 'sample_tag')     
-
-Quote.create(description: 
+tag1 = Tag.create(name: 'sample_tag')     
+tag2 = Tag.create(name: 'sample_tag_tag')
+quote = Quote.create(description: 
     'Lorem ipsum dolor sit amet, 
     consectetur adipiscing elit, sed do 
     eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis
     nostrud exercitation ullamco laboris nisi ut 
     aliquip ex ea commodo consequat.',
-    author_id: 1)
+    author_id: 1, tags:[tag1,tag2])
 
-QuotationTag.create(tag_id:1 , quote_id:18)
+QuotationTag.create(quote.id, tag1.id)

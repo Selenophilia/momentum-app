@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_073725) do
+ActiveRecord::Schema.define(version: 2020_09_10_065720) do
 
   create_table "authors", force: :cascade do |t|
     t.string "author_name"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 2020_09_09_073725) do
   end
 
   create_table "quotation_tags", force: :cascade do |t|
+    t.integer "quote_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "quote_id"
-    t.integer "tag_id"
+    t.index ["quote_id"], name: "index_quotation_tags_on_quote_id"
+    t.index ["tag_id"], name: "index_quotation_tags_on_tag_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -48,5 +50,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_073725) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "quotation_tags", "quotes"
+  add_foreign_key "quotation_tags", "tags"
   add_foreign_key "quotes", "authors"
 end
