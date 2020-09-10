@@ -6,11 +6,13 @@ class QuotesController < ApplicationController
    
     def new
         @quote = Quote.new
+        @tags  = Tag.all 
     end
 
     def create
+        @tags  = Tag.all 
         @quote = Quote.create(params.permit(:description, :author_id, tag_ids: []))
-   
+        @quote_tag = QuotationTag.create(:quote_id, :tag_id)
         if @quote.save
             redirect_to authors_quotes_path
         else
