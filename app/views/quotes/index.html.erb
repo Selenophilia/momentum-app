@@ -29,6 +29,7 @@
                 <blockquote class="blockquote">
                     <p class="card-text "><%= link_to quote.description,
                     edit_author_quotes_path(quote.author_id,quote.id) %></p>                
+                    <h6 class="card-subtitle mb-2 text-muted">#<%= @get_tag.name%></h6>
                     <footer class="blockquote-footer">
                         <small>
                             <% @author.each do |author| %>
@@ -36,6 +37,7 @@
                             <%end%>
                         </small>
                     </footer>
+
                     <% if is_admin? %>
                         <div class="text-right">
                             <%= link_to "Delete", delete_author_quotes_path(quote.author_id, quote.id), :class => "btn btn-danger btn-sm mt-2" ,method: :delete%>                                                

@@ -1,12 +1,10 @@
 <% if flash[:errors]%>
-    <% flash[:errors].each do |error| %>
         <div class="alert alert-danger" role="alert">
-                <%= error%>
+                <%= flash[:errors]%>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    <% end %>
 <%end%>
 
 <div class="container mt-5 mr-5">
@@ -28,6 +26,8 @@
                                     </div>  
                                      <%= text_field_tag  :author_name, @author.author_name ,class: "form-control" %>                                            
                             </div>
+                                 <%= select_tag(:tag_ids, options_from_collection_for_select(Tag.all, :id, :name), include_blank: @get_tag.name,class: "form-control") %>
+
                             <div class="text-center py-4">
                                 <%= submit_tag "Update Quote", class: "btn btn-primary" %>
                             </div>

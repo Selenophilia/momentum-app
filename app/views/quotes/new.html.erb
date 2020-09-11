@@ -28,7 +28,7 @@
                                         <div class="input-group-prepend">
                                              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
                                         </div>
-                                            <%= text_field_tag  :description, "Enter Quote...",class: "form-control" %>                  
+                                            <%= text_field_tag  :description, nil,placeholder: 'Enter Quote...',class: "form-control" %>                  
                                 </div>
                                   <%= select_tag(:tag_ids, options_from_collection_for_select(Tag.all, :id, :name), include_blank: "Please select a tag...",class: "form-control") %>
                                   <%# <%= collection_select :name, :tag_ids,@tags.map{|t| [t.name,t.id]}, @tags.stores.pluck(:id),:name,multiple: true %> 
