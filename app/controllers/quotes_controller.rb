@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
     def index
         @author = Author.where(id: params[:author_id])
         @quotes = Quote.where(author_id: params[:author_id])
-        @quote_tag = Quote.includes(:tags).all
+        @get_tag = Tag.joins(:quotation_tags).where(quotation_tags: { quote_id: @quotes.ids }).first
     end 
    
     def new
@@ -12,9 +12,10 @@ class QuotesController < ApplicationController
     def create
         @tag_id = params[:tag_ids].to_i
         @quote = Quote.create(params.permit(:description, :author_id, tag_ids: [])) 
-        @quote_tags = @quote.quotation_tags.create(tag_id: @tag_id)
 
-        if @quote.save && @quote_tags.save
+        if  @quote.save 
+            @quote_tags = @quote.quotation_tags.create(tag_id: @tag_id)
+            @quote_tags.save
             redirect_to authors_quotes_path
         else
             flash[:errors] = @quote.errors.full_messages 
@@ -27,10 +28,11 @@ class QuotesController < ApplicationController
     end
 
     def edit
-        if is_admin?
+        if is_admin? 
             @quotes = Quote.find(params[:id])
-            @author = Author.find(params[:author_id])  
-            
+            @author = Author.find(params[:author_id])               
+            @get_tag = Tag.joins(:quotation_tags).where(quotation_tags: { quote_id: params[:id] }).first            
+
         else    
             flash[:errors] = "You are not Authorized to that!"
             redirect_to authors_quotes_path
@@ -40,6 +42,7 @@ class QuotesController < ApplicationController
     def update
         @quotes = Quote.find(params[:id])
         @author = Author.find(params[:author_id])  
+        #byebug
         if @quotes
             @quotes.update(params.permit(:description, :author_id))
             @author.update(params.permit(:author_name))
