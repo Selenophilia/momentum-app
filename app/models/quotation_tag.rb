@@ -5,7 +5,7 @@ class QuotationTag < ApplicationRecord
   accepts_nested_attributes_for :quote
 
   validates :quote_id, presence:true  
-  validates :tag_id, uniqueness:true
+  validates :tag_id, presence:true
 
   # validates_presence_of :quote
   # validates_presence_of :tag
