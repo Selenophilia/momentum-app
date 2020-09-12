@@ -1,6 +1,4 @@
 class QuotationTag < ApplicationRecord
-    
-    validates :name, presence: true, 
-                    length: {minimum: 4}
-
+  belongs_to :quote
+  belongs_to :tag
 end

@@ -1,5 +1,6 @@
 class Quote < ApplicationRecord
   belongs_to :author
-
-  #validates :description, presence:true  
+  has_many :quotation_tags
+  has_many :tags,:through => :quotation_tags, dependent: :destroy   
+  
 end

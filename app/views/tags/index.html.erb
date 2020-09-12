@@ -1,12 +1,13 @@
- <% if flash[:alert]%>
+<%= stylesheet_link_tag "authors", media: "all", "data-turbolinks-track" => "reload" %>
+
+<% if flash[:errors]%>
         <div class="alert alert-warning" role="alert">
-                <%=  flash[:alert] = "Invalid Action!"%>
+                <%= flash[:errors] = "You are not Authorized to that!"%>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 <%end%>
- 
  
   <div class="container-fluid p-0"> 
         <div class="row" id="body-row">
@@ -26,11 +27,10 @@
                       </a>
                           <div id='submenu1' class="collapse sidebar-submenu">
                               <a data-toggle="list" href="#home" class="list-group-item list-group-item-action bg-dark text-white">
-                                  <span class="menu-collapsed"> <i class="fas fa-users mr-3"></i>Users Section</span>
+                                  <span class="menu-collapsed"> <i class="fas fa-users mr-3"></i>Tag Section</span>
                               </a>
+
                          </div>
-                  
-  
                     <a class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="icon">
@@ -40,53 +40,47 @@
                         </div>
                     </a>
 
-  
-
-                  
-                        
                 </ul>
             </div><!-- sidebar-container end -->
-          <!--  side bar content start --> 
             <div class="col">
                 <div class="tab-content">
                     <div class="tab-pane active" id="home" role="tabpanel">
-                    <div class="jumbotron">
-                      <h1 class="display-2">Users Section</h1>
-                       <% if logged_in? %>
-                           <p class="display-4"> You are logged in as, <%= current_user.username%></p>
-                        <%end%>
-                      <p>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut. </p>                      
-                          <% if is_admin? %>
-                             <%= button_to  "Add New User",new_user_path, :class => "btn btn-primary btn-md",method: :get%>   
-                          <% end %>
-                    </div>
 
-                      <table class="table table-striped">
+                <div class="jumbotron">
+                    <h1 class="display-4">Tag Section</h1>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut. </p>                      
+                        <% if is_admin? %> 
+                            <%= button_to  "Add New Tag",new_tag_path,  :class => "btn btn-primary btn-md",method: :get%>   
+                        <%end%>
+                </div>
+
+                <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th scope="col">user_id</th>
-                            <th scope="col">UserName</th>
+                            <th scope="col">tag_id</th>
+                            <th scope="col">Tag Name</th>
+                             <% if is_admin? %>
                             <th scope="col">Action</th>
+                            <%end%>
                           </tr>
                         </thead>
                         <tbody>
-                            <% @users.each do |user| %>
+                            <% @tags.each do |tag| %>
                           <tr>
-                            <th scope="row"><%= user.id%></th>
-                            <td><%=  user.username %></li></td>
-                            <td><%= link_to "Show Details", edit_user_path(user)%></td>
+                            <th scope="row"><%= tag.id%></th>
+                            <td><%=  tag.name %></td>
+                                <% if is_admin? %>
+                            <td><%= link_to "Show Details",edit_tag_path(tag)%></td>
                             <td>
-                              <% if is_admin? %>
-                                    <span class="del-btn">
-                                        <%= link_to "x", delete_user_path(user), :class => "del-btn" ,method: :delete%> 
-                                    </span>
-                              <%end%>
+                                  <span class="del-btn">
+                                      <%= link_to "x", delete_tag_path(tag), :class => "del-btn" ,method: :delete%> 
+                                  </span>
                             </td>
+                               <% end %> 
                           </tr>
                           <%end%>
                         </tbody>
                       </table>
-                    </div>
-                    <div class="tab-pane" id="profile" role="tabpanel">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad sint dolorem error quasi nam reprehenderit ut delectus eum dolores! Dignissimos?</div>
                 </div>          
         </div><!-- content end -->

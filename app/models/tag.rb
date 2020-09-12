@@ -1,7 +1,8 @@
 class Tag < ApplicationRecord
-
-    validates :tag_id, presence: true 
-
-    validates :quotation_id, presence: true
-        
+    has_many  :quotation_tags, dependent: :destroy
+    has_many  :quotes,:through =>  :quotation_tags   
+    
+    validates :name, presence: true, 
+              length: {minimum: 4}
+    
 end

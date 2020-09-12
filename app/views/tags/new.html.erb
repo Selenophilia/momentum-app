@@ -13,16 +13,16 @@
     <div class="col-md-6 mb-4">
         <div class="card">
             <div class="card-body">
-                 <%= form_for @author do|f|%>
-                         <h3 class="text-center font-bold py-4"><strong>Add New Author</strong></h3>
+                 <%= form_tag create_tag_path do %>
+                         <h3 class="text-center font-bold py-4"><strong>Create New Tag</strong></h3>
                                 <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
                                         </div>
-                                            <%= f.text_field  :author_name, placeholder: "Enter Author Name",class: "form-control" %>                  
+                                            <%= text_field_tag  :name, "Enter Tag...",class: "form-control" %>                  
                                 </div>
                                 <div class="text-center py-4">
-                                    <%= f.submit "Create Author", class: "btn btn-primary" %>
+                                    <%= submit_tag "Create Tag", class: "btn btn-primary" %>
                                 </div>
                  <%end%>                       
             </div>

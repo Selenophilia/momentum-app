@@ -8,21 +8,22 @@
         </div>
     <% end %>
 <%end%>
- 
+
 <div class="container mt-5 mr-5">
     <div class="col-md-6 mb-4">
         <div class="card">
             <div class="card-body">
-                <%= form_tag update_author_path(@author), method: :patch do  %>
-                         <h3 class="text-center font-bold py-4"><strong>Edit Author</strong></h3>
+                    <%= form_tag update_tag_path(@tag), method: :patch do %>
+                    <h3 class="text-center font-bold py-4"><strong>Edit tag</strong></h3>
                             <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+                                          <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-pen"></i></span>
                                     </div>  
-                                    <%= text_field_tag  :author_name,  @author.author_name,class: "form-control" %>                  
+                                    <%= text_field_tag  :name, @tag.name ,class: "form-control" %>                  
                             </div>
+
                             <div class="text-center py-4">
-                                <%= submit_tag "Update Author", class: "btn btn-primary" %>
+                                <%= submit_tag "Update Tag", class: "btn btn-primary"%>
                             </div>
                  <%end%>                       
             </div>

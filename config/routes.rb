@@ -38,10 +38,20 @@ Rails.application.routes.draw do
   get '/authors/:author_id/quotes/new' => 'quotes#new',  as: 'new_author_quotes'
   post '/authors/:author_id/quotes' => 'quotes#create',  as: 'create_author_quotes' 
   get '/authors/:author_id/quotes/:id' => 'quotes#show', as: 'show_author_quotes'
-
   get '/authors/:author_id/quotes/:id/edit' => 'quotes#edit', as: 'edit_author_quotes'
   patch '/authors/:author_id/quotes/:id' => 'quotes#update', as: 'update_author_quotes'
-
   delete '/authors/:author_id/quotes/:id' => 'quotes#destroy', as: 'delete_author_quotes'
   #quotes routes end
+
+  #tag routes start
+  get '/tag' => 'tags#index', as: 'tag'
+  get '/tag/new' => 'tags#new',  as: 'new_tag'
+  post '/tag' => 'tags#create',  as: 'create_tag' 
+  get '/tag/:id' => 'tags#show', as: 'show_tag'
+  get '/tag/:id/edit' => 'tags#edit', as: 'edit_tag'
+  patch '/tag/:id' => 'tags#update', as: 'update_tag'
+
+  delete '/tag/:id' => 'tags#destroy', as: 'delete_tag'
+  #tag routes end
+
 end

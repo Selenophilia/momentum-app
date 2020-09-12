@@ -28,12 +28,17 @@
                                         <div class="input-group-prepend">
                                              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
                                         </div>
-                                            <%= text_field_tag  :description, "Enter Quote...",class: "form-control" %>                  
-                                </div>
+                                            <%= text_field_tag  :description, nil,placeholder: 'Enter Quote...',class: "form-control" %>                  
+                                </div>                                  
+                                <% Tag.all.each do |t| %>
+                                    <%= check_box_tag 'tag_ids[]' ,t.id, checked = false,include_hidden: false  %>
+                                    <%= t.name %>
+                                <br />
+                                <% end %>
                                 <div class="text-center py-4">
                                     <%= submit_tag "Create Quote", class: "btn btn-primary" %>
                                 </div>
-                 <%end%>                       
+                 <%end%>         
             </div>
         </div>
     </div>

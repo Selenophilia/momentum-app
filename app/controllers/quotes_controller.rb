@@ -2,6 +2,7 @@ class QuotesController < ApplicationController
     def index
         @author = Author.where(id: params[:author_id])
         @quotes = Quote.where(author_id: params[:author_id])
+        @get_tag  = Tag.all    
     end 
    
     def new
@@ -9,14 +10,13 @@ class QuotesController < ApplicationController
     end
 
     def create
-        @quote = Quote.create(params.permit(:description, :author_id, :id))
-   
-        if @quote.save
+        @quote = Quote.new(quote_params)
+        if  @quote.save 
             redirect_to authors_quotes_path
         else
             flash[:errors] = @quote.errors.full_messages 
             redirect_to new_author_quotes_url   
-        end 
+        end  
     end 
 
     def show
@@ -24,11 +24,10 @@ class QuotesController < ApplicationController
     end
 
     def edit
-        if is_admin?
+        if is_admin? 
             @quotes = Quote.find(params[:id])
-            @author = Author.find(params[:author_id])  
-            
-        else    
+            @author = Author.find(params[:author_id])
+        else   
             flash[:errors] = "You are not Authorized to that!"
             redirect_to authors_quotes_path
         end
@@ -38,9 +37,8 @@ class QuotesController < ApplicationController
         @quotes = Quote.find(params[:id])
         @author = Author.find(params[:author_id])  
         if @quotes
-            @quotes.update(params.permit(:description, :author_id))
+            @quotes.update(quote_params)     
             @author.update(params.permit(:author_name))
-            #redirect_to show_author_quotes_path
             redirect_to authors_quotes_path
         else
             flash[:errors] = @articles.errors.full_messages 
@@ -52,9 +50,14 @@ class QuotesController < ApplicationController
     def destroy
         @quotes = Quote.find(params[:id])
         if @quotes
-            @quotes.destroy
+            @quotes.destroy                
             redirect_to authors_quotes_url
         end 
+    end
+
+    private
+    def quote_params
+        params.permit(:description, :author_id, tag_ids: []) 
     end
 
 end 

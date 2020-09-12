@@ -12,10 +12,7 @@ class UsersController < ApplicationController
     def create
         @user = User.create(params.require(:user).permit(:email, :username, :password))
 
-        if @user.save               
-            #session[:user_id] = @user.id
-            #redirect_to '/users/' + @user.id.to_s
-            
+        if @user.save                  
             redirect_to '/users' 
 
         else
@@ -49,7 +46,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user
             @user.update(params.permit(:username, :email, :password))
-            #redirect_to show_user_url
             redirect_to '/users'
         else
             flash[:errors] = @user.errors.full_messages 

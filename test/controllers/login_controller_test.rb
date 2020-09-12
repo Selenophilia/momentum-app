@@ -6,22 +6,22 @@ class LoginControllerTest < ActionDispatch::IntegrationTest
                                  password: "examplepassword", admin: false)
     end
   
-  test "should not go to index page if log in form is empty" do
+  test "1.should not go to index page if log in form is empty" do
     user = User.create(username: "", password:"")
     assert_not user.save, "username and password should not be blank"
   end
 
-  test "should not go to index page if username field is empty" do
+  test "2.should not go to index page if username field is empty" do
     user = User.create(username: " ", password:"example_password")
     assert_not user.save, "Username field is empty"
   end
 
-  test "should not go to index page if password field is empty" do
+  test "3.should not go to index page if password field is empty" do
     user = User.create(username: "example_user", password:"example_password")
     assert_not user.save, "Password field is empty"
   end
 
-  test "should go to login  form" do
+  test "4.should go to login  form" do
     get '/login' 
     assert_recognizes({ :controller => 'login',
                         :action => 'new'},
@@ -29,11 +29,11 @@ class LoginControllerTest < ActionDispatch::IntegrationTest
                         :method => :get)
   end
   
-  test "should go to index form after login" do
+  test "5.should go to index form after login" do
     login_user_test(@user)
   end
 
-  test "can see the welcome page" do
+  test "6.can see the welcome page" do
     get "/index"
     assert_response :success
   end
