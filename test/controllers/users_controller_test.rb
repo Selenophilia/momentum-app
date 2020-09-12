@@ -15,17 +15,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     Rails.cache.clear
   end
 
-  test "should go to new user form" do
+  test "1.should go to new user form" do
     get new_user_path
     assert_response :success 
   end 
 
-  test "should create user" do
+  test "2.should create user" do
     post create_user_url, params: {user: {username: 'user_user', email: 'user@email.com', password: 'password'}}  
     assert_response :redirect
   end
 
-  test "should go to user details form" do
+  test "3.should go to user details form" do
     get '/users/' + @user.id.to_s
     assert_recognizes({ :controller => 'users',
                         :action => 'show',
@@ -34,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                         :method => :get)
   end
   
-  test "should go to update user details form" do
+  test "4.should go to update user details form" do
     get '/users/' + @user.id.to_s
     assert_recognizes({ :controller => 'users',
                         :action => 'update',
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test "should go delete user details form" do
+  test "5.should go delete user details form" do
     get '/users/' + @user.id.to_s
     assert_recognizes({ :controller => 'users',
                         :action => 'destroy',
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test "route test" do
+  test "6.route test" do
     assert_generates "/users", :controller => "users", :action => "index"
     assert_generates "/users/new", { :controller => "users", :action => "new" }
     assert_generates "/users/1", { :controller => "users", :action => "show", :id => "1" }
@@ -64,7 +64,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  test "should go to new user form and create user when login as admin" do
+  test "7.should go to new user form and create user when login as admin" do
     login_user_test(@admin_user) 
     get '/users/new'    
     assert_response :success
@@ -76,7 +76,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should delete user when login as admin" do
+  test "8.should delete user when login as admin" do
     login_user_test(@admin_user) 
 
     assert_difference('User.count', -1) do

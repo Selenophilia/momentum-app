@@ -9,22 +9,22 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     @get_author =  Author.last
   end
 
-  test "should go to author index form" do
+  test "1.should go to author index form" do
     get authors_path
     assert_response :redirect 
   end 
 
-  test "should go to new author form" do
+  test "2.should go to new author form" do
     get new_author_path
     assert_response :redirect 
   end 
 
-  test "should create user" do
+  test "3.should create user" do
     post create_author_url, params: {author: {author_name: 'user_user'}}  
     assert_response :redirect
   end
 
-  test "should go to author details form" do
+  test "4.should go to author details form" do
     get '/authors/' + @author.id.to_s
     assert_recognizes({ :controller => 'authors',
                         :action => 'show',
@@ -34,7 +34,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
   
-  test "should  update author data" do
+  test "5.should  update author data" do
     get '/authors/' + @author.id.to_s
     assert_recognizes({ :controller => 'authors',
                         :action => 'update',
@@ -44,7 +44,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test "should go delete user details form" do
+  test "6.should go delete user details form" do
     get '/authors/' + @author.id.to_s
     assert_recognizes({ :controller => 'authors',
                         :action => 'destroy',
@@ -55,7 +55,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  test "should go to new author form and create author when login as admin" do
+  test "7.should go to new author form and create author when login as admin" do
     login_user_test(@admin_user) 
     get '/authors/new'    
     assert_response :success
@@ -67,7 +67,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should delete author when login as admin" do
+  test "8.should delete author when login as admin" do
     login_user_test(@admin_user) 
 
     assert_difference('Author.count', -1) do
