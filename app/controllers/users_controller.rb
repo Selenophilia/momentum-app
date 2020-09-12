@@ -49,7 +49,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user
             @user.update(params.permit(:username, :email, :password))
-            #redirect_to show_user_url
             redirect_to '/users'
         else
             flash[:errors] = @user.errors.full_messages 

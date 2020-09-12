@@ -21,7 +21,6 @@ class AuthorsController < ApplicationController
 
     def show
         @author = Author.find(params[:id])
-        #redirect_to show_author_url
     end 
 
     def edit
@@ -33,7 +32,6 @@ class AuthorsController < ApplicationController
 
         if @author
             @author.update(params.permit(:author_name))
-            #redirect_to show_author_url
             redirect_to authors_path
         else
             flash[:errors] = @author.errors.full_messages 
