@@ -18,8 +18,10 @@
                         <h2 class="intro-align-greetings"> Welcome, <%= current_user.username%></h2> 
                 <%end%>  
             <h2 class="intro-align-sub-title"> <% @quotes.each do |quote| %>
-                    <%= quote.description%></h1>
+                    <%= quote.description%></h2>
                 <%end%>   
+                 <h2 class="intro-align-sub-title">  <%= @tags.name%></h2>
+                 
         </div>
 </section>
 
