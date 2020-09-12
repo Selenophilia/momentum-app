@@ -29,9 +29,7 @@
                                              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
                                         </div>
                                             <%= text_field_tag  :description, nil,placeholder: 'Enter Quote...',class: "form-control" %>                  
-                                </div>
-                                  <%# <%= select_tag(:tag_ids, options_from_collection_for_select(Tag.all, :id, :name), include_blank: "Please select a tag...",class: "form-control") %>                                   
-                                  
+                                </div>                                  
                                 <% Tag.all.each do |t| %>
                                     <%= check_box_tag 'tag_ids[]' ,t.id, checked = false,include_hidden: false  %>
                                     <%= t.name %>

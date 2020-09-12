@@ -12,10 +12,7 @@ class UsersController < ApplicationController
     def create
         @user = User.create(params.require(:user).permit(:email, :username, :password))
 
-        if @user.save               
-            #session[:user_id] = @user.id
-            #redirect_to '/users/' + @user.id.to_s
-            
+        if @user.save                  
             redirect_to '/users' 
 
         else

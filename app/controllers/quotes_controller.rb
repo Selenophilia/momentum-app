@@ -11,8 +11,6 @@ class QuotesController < ApplicationController
 
     def create
         @quote = Quote.new(quote_params)
-      #  byebug
-
         if  @quote.save 
             redirect_to authors_quotes_path
         else
@@ -39,7 +37,6 @@ class QuotesController < ApplicationController
         @quotes = Quote.find(params[:id])
         @author = Author.find(params[:author_id])  
         if @quotes
-            #byebug
             @quotes.update(quote_params)     
             @author.update(params.permit(:author_name))
             redirect_to authors_quotes_path
