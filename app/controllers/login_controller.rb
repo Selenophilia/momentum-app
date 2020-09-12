@@ -46,6 +46,7 @@ class LoginController < ApplicationController
     def welcome
         @time = Time.now.strftime("%H:%M ")
         @quotes = Quote.order('RANDOM()').limit(1)
+        @tags = Tag.order('RANDOM()').limit(1).first
 
     end 
 
