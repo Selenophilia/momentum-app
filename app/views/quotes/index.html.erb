@@ -29,7 +29,9 @@
                 <blockquote class="blockquote">
                     <p class="card-text "><%= link_to quote.description,
                     edit_author_quotes_path(quote.author_id,quote.id) %></p>                
-                    <h6 class="card-subtitle mb-2 text-muted">#<%= @get_tag.name%></h6>
+                   <%@get_tag.each do |tag| %>
+                            <a class="card-subtitle mb-2 text-muted">#<%= tag.name%></a>
+                     <%end%>  
                     <footer class="blockquote-footer">
                         <small>
                             <% @author.each do |author| %>
