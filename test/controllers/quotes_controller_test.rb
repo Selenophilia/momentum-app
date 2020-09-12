@@ -2,12 +2,12 @@ require 'test_helper'
 
 class QuotesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @author     =  Author.create(author_name: "author_sample_name", id: 1)
+    @author     =  Author.create(author_name: "author_sample_name")
     @quotes     =  Quote.create(description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                                          author_id: 1, id: 1)  
+                                          author_id: @author.id)  
     @admin_user =  User.create(username: "admin_user", email: "admin_email@email.com",
-                              password: "examplepassword",id: 1 ,admin: true)
-
+                               password: "examplepassword",id: 1 ,admin: true)
+    @tag        =  Tag.create(name: "sample_tag")
   end
 
   teardown do
@@ -91,9 +91,10 @@ class QuotesControllerTest < ActionDispatch::IntegrationTest
     get '/authors/' + @author.id.to_s + '/quotes/new'    
     assert_response :success
     assert_difference 'Quote.count', 1 do
-      post create_author_quotes_url, params: { quote: {description: 'example_description'}}
-      assert_response :redirect
-    end
+      post create_author_quotes_url, params: { quote: {description: 'example_description', tag_ids: []}}  
+            assert_response :redirect  
+    end 
+
     follow_redirect!
     assert_response :success
 
