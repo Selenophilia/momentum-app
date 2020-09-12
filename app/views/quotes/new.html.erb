@@ -33,7 +33,7 @@
                                   <%# <%= select_tag(:tag_ids, options_from_collection_for_select(Tag.all, :id, :name), include_blank: "Please select a tag...",class: "form-control") %>                                   
                                   
                                 <% Tag.all.each do |t| %>
-                                    <%= check_box_tag 'tag_ids[]' ,t.id,:tag_ids,include_hidden: false  %>
+                                    <%= check_box_tag 'tag_ids[]' ,t.id, checked = false,include_hidden: false  %>
                                     <%= t.name %>
                                 <br />
                                 <% end %>
